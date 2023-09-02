@@ -3,6 +3,7 @@ package com.example3.service;
 
 import com.example3.model.Faculty;
 import com.example3.model.Student;
+import com.example3.model.StudentAge;
 
 import java.util.Collection;
 
@@ -16,4 +17,8 @@ public interface StudentService {
     void deleteStudent (long id);
 
     Faculty findFaculty(String name);
+
+    Integer getStudentCount();
+    StudentAge getAverageAge();
+    Collection<Student> getTopFiveStudent();
 }

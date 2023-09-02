@@ -2,6 +2,7 @@ package com.example3.controller;
 
 import com.example3.model.Faculty;
 import com.example3.model.Student;
+import com.example3.model.StudentAge;
 import com.example3.service.StudentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,5 +50,17 @@ public class StudentController  {
     @GetMapping(params = {"name"},value = "/facultyStudent")
     public Collection<Faculty> findByName (@RequestParam String name){
         return (Collection<Faculty>) studentService.findFaculty(name);
+    }
+@GetMapping("/count")
+    public Integer getStudentCount(){
+        return studentService.getStudentCount();
+    }
+    @GetMapping("/average-age")
+    public StudentAge getAverageAge(){
+        return studentService.getAverageAge();
+    }
+    @GetMapping("/top-five")
+    public Collection<Student> getTopFiveStudent(){
+        return studentService.getTopFiveStudent();
     }
 }
