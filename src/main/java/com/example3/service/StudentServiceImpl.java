@@ -2,6 +2,7 @@ package com.example3.service;
 
 import com.example3.model.Faculty;
 import com.example3.model.Student;
+import com.example3.model.StudentAge;
 import com.example3.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,21 @@ public class StudentServiceImpl implements StudentService{
 
     public Faculty findFaculty(String name) {
         return  studentRepository.findByName(name).getFaculty();
+    }
+
+    @Override
+    public Integer getStudentCount() {
+            return  studentRepository.getStudentCount();
+    }
+
+    @Override
+    public StudentAge getAverageAge() {
+        return studentRepository.getAvarageStudentAge();
+    }
+
+    @Override
+    public Collection<Student> getTopFiveStudent() {
+        return studentRepository.getTopFiveStudent();
     }
 
 }

@@ -5,6 +5,8 @@ import com.example3.model.Avatar;
 import com.example3.model.Student;
 import com.example3.repository.AvatarRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +14,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Collection;
 import java.util.UUID;
 
 
@@ -55,6 +58,13 @@ public class AvatarServiceImpl implements AvatarService {
         return avatarRepository.findById(avatarId)
                 .orElseThrow(()-> new AvatarNotFoundException("Avatar not found"));
     }
+
+    @Override
+    public Collection<Avatar> getAllAvatar(Integer pageNumber, Integer pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return avatarRepository.findAll(pageable).getContent();
+    }
+
     private String getExtension(String fileName){
         return null;
     }
